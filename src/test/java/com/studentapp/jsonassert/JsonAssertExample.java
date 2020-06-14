@@ -1,5 +1,6 @@
 package com.studentapp.jsonassert;
 
+import com.studentapp.testbase.TestBase;
 import io.restassured.RestAssured;
 import org.json.JSONException;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class JsonAssertExample {
+public class JsonAssertExample extends TestBase {
 
 
     @Test
@@ -19,7 +20,10 @@ public class JsonAssertExample {
         String expectedValue = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") +
                 File.separator + "file.txt")));
 
-        String actualValue = RestAssured.given().when().get("/list").asString();
+        String actualValue = RestAssured.given()
+                .when()
+                .get("/list")
+                .asString();
 
         System.out.println(expectedValue);
         System.out.println(actualValue);
